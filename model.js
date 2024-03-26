@@ -15,7 +15,6 @@ const shoppingList = [
 
 let shoppingInput = '';
 
-
 const toDoList = [
     {
         task: 'clean floors'

@@ -12,7 +12,7 @@ function updateShoppingView(){
         <br/>     
     <input id="NewItem" type=text>
     <button onclick="addNewItem()">Add a New Item</button>
-    <button onclick="removeMarkers()">Remove all markers</button>
+    <button onclick="uncheckShopping()">Remove all markers</button>
     </div>
     
     `;
@@ -28,12 +28,21 @@ function drawShoppingList(){
     for (let i = 0; i < shoppingList.length; i++){
         const foundItem = shoppingList[i]
         const checkedHTML = foundItem.isFound ? 'checked="checked"' : '';
+        if (!foundItem.editmode){
         mainHTML += `<tr>
                     <th>${shoppingList[i].itemName}</th>
-                    <th><input onchange="changeIsDone(this, ${i})" type = "checkbox"/>${checkedHTML}</th>
-                    <th><button>Edit</button><button>Delete</button></th>
+                    <th><input id="shoppingCheck" onchange="changeIsDone(this, ${i})" type = "checkbox" ${checkedHTML}/></th> 
+                    <th><button onclick="editTask(${i})">Edit</button><button onclick="deleteTheItem(${i})">Delete</button></th>
                     </tr>
                 `;
+        } else {
+            mainHTML +=`
+                    <th><input id="editItem${i}" type="text" value="${shoppingList[i].itemName}"/></th>
+                    <th><input onchange="changeIsDone(this, ${i})" type = "checkbox" ${checkedHTML}/></th> 
+                    <th><button onclick="updateItem(${i})">Save change</button></th>
+                    </tr>
+            `;
+        }
     }
     return mainHTML;
 }
@@ -43,6 +52,27 @@ function changeIsDone(checkbox, index){
     drawShoppingList()
 }
 
-function removeMarkers(){
-    
+function deleteTheItem(index){
+    shoppingList.splice(index,1);
+    updateShoppingView()
+}
+
+function editTask(index){
+    shoppingList[index].editmode = true;
+    updateShoppingView()
+}
+
+function updateItem(index){
+    const id = `editItem${index}`;
+    const inputTag = document.getElementById(id);
+    shoppingList[index].itemName = inputTag.value;
+    shoppingList[index].editmode = false;
+    updateShoppingView()
+}
+
+function uncheckShopping(){
+    let inputs = document.querySelectorAll('.shoppingCheck');
+    for (let i = 0; i < inputs.length; i ++){
+        inputs[i].checked=false;
+    }
 }
