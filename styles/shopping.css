@@ -1,0 +1,37 @@
+#body{
+    background-color: cadetblue;
+    display: flex;
+    justify-content: center;
+}
+
+h1{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    opacity: 70%;
+    margin-left: 40px;
+    margin-right: 40px;
+    text-decoration: underline;
+    width: 500px;
+}
+
+h2{
+    font-family: Arial, Helvetica, sans-serif;
+    color: darkslategrey;
+    margin-left: 20px;
+    margin-right: 30px;
+}
+
+.listChoiceDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    margin: 40px;
+    background-color: rgb(14, 163, 116);
+    box-shadow: 10px 10px 10px rgb(18, 104, 85);
+}
+
+table,tr,td,th {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px;
+}
