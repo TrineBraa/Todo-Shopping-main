@@ -31,7 +31,7 @@ function drawShoppingList(){
         mainHTML += `<tr>
                     <th>${shoppingList[i].itemName}</th>
                     <th><input class="shoppingCheck" onchange="changeIsDone(this, ${i})" type = "checkbox" ${checkedHTML}/></th> 
-                    <th><button onclick="editTask(${i})">Edit</button><button onclick="deleteTheItem(${i})">Delete</button></th>
+                    <th><button onclick="editshopping(${i})">Edit</button><button onclick="deleteTheItem(${i})">Delete</button></th>
                     </tr>
                 `;
         } else {
@@ -46,20 +46,7 @@ function drawShoppingList(){
     return mainHTML;
 }
 
-function changeIsDone(checkbox, index){
-    shoppingList[index].isFound = checkbox.checked;
-    drawShoppingList()
-}
 
-function deleteTheItem(index){
-    shoppingList.splice(index,1);
-    updateShoppingView()
-}
-
-function editTask(index){
-    shoppingList[index].editmode = true;
-    updateShoppingView()
-}
 
 function updateItem(index){
     const id = `editItem${index}`;
