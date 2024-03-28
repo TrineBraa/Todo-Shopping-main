@@ -12,7 +12,6 @@ function updateShoppingView(){
         <br/>     
     <input id="NewItem" type=text>
     <button onclick="addNewItem()">Add a New Item</button>
-    <button onclick="uncheckShopping()">Remove all markers</button>
     </div>
     
     `;
@@ -31,7 +30,7 @@ function drawShoppingList(){
         if (!foundItem.editmode){
         mainHTML += `<tr>
                     <th>${shoppingList[i].itemName}</th>
-                    <th><input id="shoppingCheck" onchange="changeIsDone(this, ${i})" type = "checkbox" ${checkedHTML}/></th> 
+                    <th><input class="shoppingCheck" onchange="changeIsDone(this, ${i})" type = "checkbox" ${checkedHTML}/></th> 
                     <th><button onclick="editTask(${i})">Edit</button><button onclick="deleteTheItem(${i})">Delete</button></th>
                     </tr>
                 `;
@@ -70,9 +69,3 @@ function updateItem(index){
     updateShoppingView()
 }
 
-function uncheckShopping(){
-    let inputs = document.querySelectorAll('.shoppingCheck');
-    for (let i = 0; i < inputs.length; i ++){
-        inputs[i].checked=false;
-    }
-}
